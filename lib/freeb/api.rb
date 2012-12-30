@@ -17,7 +17,11 @@ module Freeb
     def self.topic(mql)
       result = mqlread(mql)
       return nil if result.blank?
-      Freeb::Topic.new(result)
+      if result.is_a?(Array)
+        result.collect { |r| Freeb::Topic.new(r) }
+      else
+        Freeb::Topic.new(result)
+      end
     end
 
     def self.search(params)
@@ -25,7 +29,7 @@ module Freeb
       url = "#{@base_url}search?#{params.to_query}"
       result = get_result(url)
       log "Search Response: #{result}"
-      result["result"].collect {|r| Topic.new(r) }
+      result["result"].collect { |r| Topic.new(r) }
     end
 
     def self.mqlread(mql)

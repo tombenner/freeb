@@ -279,6 +279,16 @@ Returns a topic object for the specified MQL. This is useful if you want to grab
     beatles['/music/artist/genre']
     # [{"name"=>"Rock music", "id"=>"/en/rock_music"}, {"name"=>"Pop music", "id"=>"/en/pop_music"}, ...]
 
+You can also use an array as an argument to get an array of topics:
+
+    mql = [{
+      :type => "/location/us_state",
+      :id => nil,
+      :name => nil
+    }]
+    Freeb.topic(mql)
+    # [#<Freeb::Topic:0x007fe5ebe491d8 @raw_data={"type"=>"/location/us_state", "id"=>"/en/alabama", "name"=>"Alabama"}>, #<Freeb::Topic:0x007fe5ebe49160 @raw_data={"type"=>"/location/us_state", "id"=>"/en/alaska", "name"=>"Alaska"}>, ...]
+
 #### Freeb.mqlread(mql)
 
 Same as Freeb.topic, but returns the response's hash instead of a Freeb:Topic.

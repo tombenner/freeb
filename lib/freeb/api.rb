@@ -20,6 +20,14 @@ module Freeb
       Freeb::Topic.new(result)
     end
 
+    def self.search(params)
+      log "Search Request: #{params}"
+      url = "#{@base_url}search?#{params.to_query}"
+      result = get_result(url)
+      log "Search Response: #{result}"
+      result["result"].collect {|r| Topic.new(r) }
+    end
+
     def self.mqlread(mql)
       log "MQL Request: #{mql}"
       query = URI.escape(mql.to_json)
@@ -46,7 +54,7 @@ module Freeb
     end
 
     def self.log(message)
-      #puts message
+      Rails.logger.debug("Freeb: #{message}")
     end
   end
 end

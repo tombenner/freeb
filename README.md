@@ -255,6 +255,13 @@ Returns a topic object for the specified Freebase ID.
     Freeb.get('/en/the_beatles')
     # <Freeb::Topic:0x007fd9fbf6f978 @raw_data={"id"=>"/en/the_beatles", "name"=>"The Beatles"}>
 
+#### Freeb.search(params)
+
+Returns an array of topic objects for a Freebase search. The available parameters are listed [here](http://wiki.freebase.com/wiki/ApiSearch).
+
+    Freeb.search(:keyword => 'The Beatles')
+    # [#<Freeb::Topic:0x007fd6f22d4698 "id"=>"/en/the_beatles", "name"=>"The Beatles", "notable"=>{"name"=>"Musical Group", "id"=>"/music/musical_group"}, "lang"=>"en", "score"=>933.343811}>, #<Freeb::Topic:0x007fd6f22d4620 @raw_data={"mid"=>"/m/03j24kf", "id"=>"/en/paul_mccartney", "name"=>"Paul McCartney", "notable"=>{"name"=>"Musician", "id"=>"/m/09jwl"}, "lang"=>"en", "score"=>384.929718}>, #<Freeb::Topic:0x007fd6f22d45a8 @raw_data={"mid"=>"/m/01vsl3_", "id"=>"/en/john_lennon", "name"=>"John Lennon", 
+
 #### Freeb.topic(mql)
 
 Returns a topic object for the specified MQL. This is useful if you want to grab a number of properties using a single API call.

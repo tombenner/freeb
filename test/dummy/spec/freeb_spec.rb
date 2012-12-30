@@ -6,6 +6,12 @@ module Freeb
     end
   end
 
+  describe ".search" do
+    it "returns a hash with at least one correct result" do
+      Freeb.search(:query => "The Beatles").any? { |result| result.id == "/en/the_beatles" }.should be_true
+    end
+  end
+
   describe ".topic" do
     it "returns a topic with the correct name" do
       mql = {

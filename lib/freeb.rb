@@ -3,6 +3,10 @@ module Freeb
     API.get(freebase_id)
   end
 
+  def self.search(params)
+    API.search(params)
+  end
+
   def self.topic(mql)
     API.topic(mql)
   end

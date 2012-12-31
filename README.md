@@ -293,6 +293,34 @@ You can also use an array as an argument to get an array of topics:
 
 Same as Freeb.topic, but returns the response's hash instead of a Freeb:Topic.
 
+Configuration
+-------------
+
+You can modify Freeb's default settings by adding an initializer:
+
+
+    # config/initializers/freeb.rb
+    Freeb.config do |config|
+      config.api_key "my_api_key"
+      config.cache :expires_in => 7.days
+    end
+
+#### api_key
+
+Freeb doesn't use an [API key](http://wiki.freebase.com/wiki/Freebase_API#API_Keys) by default, but you can add one to use it in all API requests:
+
+    config.api_key "my_api_key"
+
+#### cache
+
+Freeb caches Freebase API responses by default, using `:expires_in => 1.day`. You can change this duration:
+
+    config.cache :expires_in => 7.days
+
+Or disable the caching entirely:
+
+    config.cache :is_active => false
+
 License
 -------
 

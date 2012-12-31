@@ -1,4 +1,8 @@
 module Freeb
+  def self.config
+    yield Freeb::Config
+  end
+
   def self.get(freebase_id)
     API.get(freebase_id)
   end

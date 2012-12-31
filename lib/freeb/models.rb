@@ -5,7 +5,7 @@ module Freeb
         include InstanceMethods
         dsl = DSL.new
         dsl.instance_eval(&block)
-        options = Config.register(self, dsl.config)
+        options = ModelConfig.register(self, dsl.config)
 
         accessible_attributes = [:freebase_id, :name]
         accessible_attributes += (options[:properties].merge(options[:topics]).merge(options[:has_many])).keys
@@ -17,7 +17,7 @@ module Freeb
         initialize_topic_associations(options)
         initialize_has_many_associations(options)
         
-        @freeb_config = Config.get(self)
+        @freeb_config = ModelConfig.get(self)
       end
 
       def initialize_topic_associations(options)

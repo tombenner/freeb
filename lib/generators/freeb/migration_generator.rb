@@ -17,7 +17,7 @@ module Freeb
     def create_migration_file
       @migration_class_name = "Create#{model_name.pluralize}"
       @table_name = model_name.tableize
-      @properties = Freeb::Config.get_migration_properties(model_name.classify.constantize)
+      @properties = ModelConfig.get_migration_properties(model_name.classify.constantize)
       template 'migration.rb', "db/migrate/#{self.class.next_migration_number}_create_#{@table_name}.rb"
     end
   end

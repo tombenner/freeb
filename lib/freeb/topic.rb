@@ -4,7 +4,7 @@ module Freeb
 
     def initialize(id_or_hash)
       if id_or_hash.is_a?(String)
-        response = Freeb::API.get(id)
+        response = API.get(id)
       else
         response = id_or_hash
       end
@@ -19,7 +19,7 @@ module Freeb
     end
 
     def description
-      @raw_data["description"] ||= Freeb::API.description(id)
+      @raw_data["description"] ||= API.description(id)
     end
 
     def raw_data

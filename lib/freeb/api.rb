@@ -18,9 +18,9 @@ module Freeb
       result = mqlread(mql)
       return nil if result.blank?
       if result.is_a?(Array)
-        result.collect { |r| Freeb::Topic.new(r) }
+        result.collect { |r| Topic.new(r) }
       else
-        Freeb::Topic.new(result)
+        Topic.new(result)
       end
     end
 

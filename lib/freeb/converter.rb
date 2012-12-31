@@ -1,29 +1,29 @@
 module Freeb
   class Converter
     def self.freebase_id_to_topic(freebase_id, model)
-      config = Freeb::Config.get(model)
-      query_properties = Freeb::Config.get_query_properties(model)
+      config = ModelConfig.get(model)
+      query_properties = ModelConfig.get_query_properties(model)
       mql = {
         :id => freebase_id,
         :type => config[:type],
         :name => nil
       }.merge(query_properties)
-      Freeb::API.topic(mql)
+      API.topic(mql)
     end
 
     def self.name_to_topic(name, model)
-      config = Freeb::Config.get(model)
-      query_properties = Freeb::Config.get_query_properties(model)
+      config = ModelConfig.get(model)
+      query_properties = ModelConfig.get_query_properties(model)
       mql = {
         :id => nil,
         :type => config[:type],
         :name => name
       }.merge(query_properties)
-      Freeb::API.topic(mql)
+      API.topic(mql)
     end
 
     def self.topic_to_record_attributes(topic, model)
-      config = Freeb::Config.get(model)
+      config = ModelConfig.get(model)
       attributes = {
         :freebase_id => topic.id,
         :name => topic.name
@@ -42,7 +42,7 @@ module Freeb
         records = topic[association_config[:id]]
         model = association_config[:class_name].constantize
         attributes[key] = records.collect { |hash|
-          topic = Freeb::Topic.new(hash)
+          topic = Topic.new(hash)
           hash = topic_to_record_attributes(topic, model)
           model.ffind_or_create(hash) }
       end

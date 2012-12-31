@@ -1,9 +1,8 @@
 module Freeb
-  class Config
+  class ModelConfig
     @models = {}
     
-    def self.register(model, args)
-      options = args#.extract_options!
+    def self.register(model, options)
       key = model_to_key(model)
       @models[key] = normalize_options(options)
     end

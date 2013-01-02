@@ -201,7 +201,7 @@ Or an array of names:
     
 Creates records for every Freebase entity of the model's type:
 
-    states = UsState.create_all
+    states = UsState.fcreate_all
     states.count
     # 50
 
